@@ -84,7 +84,7 @@ function showBankQR(name) {
     const content = `MUA ${currentProduct} - ${name}`;
     document.getElementById('bank-transfer-content').innerText = content;
     const bank = 'MB';
-    const account = '123456789';
+    const account = '701235';
     const template = `https://img.vietqr.io/image/${bank}-${account}-compact2.png?amount=&addInfo=${encodeURIComponent(content)}&accountName=NGUYEN%20VAN%20A`;
     document.getElementById('bank-qr-img').src = template;
     document.getElementById('bank-transfer-qr').style.display = 'block';
