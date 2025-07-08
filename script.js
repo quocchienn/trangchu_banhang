@@ -61,7 +61,7 @@ async function submitOrder(event) {
         formData.append('paymentProof', paymentProof);
 
         try {
-            const response = await fetch('http://localhost:3000/api/order', {
+            const response = await fetch('https://server-bantk.onrender.com', {
                 method: 'POST',
                 body: formData
             });
