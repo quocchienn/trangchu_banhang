@@ -48,6 +48,11 @@ async function submitOrder(event) {
             return;
         }
 
+        if (paymentProof.size > 10 * 1024 * 1024) {
+            alert('File ảnh quá lớn! Vui lòng chọn file dưới 10MB.');
+            return;
+        }
+
         // Lấy lại thông tin khách hàng đã nhập
         const customerName = document.getElementById('customerName').value;
         const customerPhone = document.getElementById('customerPhone').value;
@@ -60,22 +65,33 @@ async function submitOrder(event) {
         formData.append('product', currentProduct);
         formData.append('paymentProof', paymentProof);
 
+        console.log('Sending FormData:', {
+            customerName,
+            customerPhone,
+            customerEmail,
+            product: currentProduct,
+            paymentProof: paymentProof.name
+        });
+
         try {
-            const response = await fetch('https://server-banhang12.onrender.com', {
+            const response = await fetch('https://server-banhang12.onrender.com/api/order', {
                 method: 'POST',
                 body: formData
             });
             const result = await response.json();
+            console.log('Server response:', result);
+
             if (result.success) {
                 document.getElementById('bank-transfer-qr').style.display = 'none';
                 document.getElementById('waiting-confirm').style.display = 'block';
                 document.getElementById('order-submit-btn').style.display = 'none';
                 orderStep = 3;
             } else {
-                alert('Có lỗi xảy ra, vui lòng thử lại!');
+                alert('Có lỗi xảy ra: ' + (result.message || 'Không nhận được phản hồi từ server'));
             }
         } catch (err) {
-            alert('Không thể gửi đơn hàng. Vui lòng thử lại sau!');
+            console.error('Fetch error:', err);
+            alert('Không thể gửi đơn hàng. Vui lòng thử lại sau! Chi tiết lỗi: ' + err.message);
         }
     }
 }
@@ -84,7 +100,7 @@ function showBankQR(name) {
     const content = `MUA ${currentProduct} - ${name}`;
     document.getElementById('bank-transfer-content').innerText = content;
     const bank = 'MB';
-    const account = '123456789';
+    const account = '701235';
     const template = `https://img.vietqr.io/image/${bank}-${account}-compact2.png?amount=&addInfo=${encodeURIComponent(content)}&accountName=NGUYEN%20VAN%20A`;
     document.getElementById('bank-qr-img').src = template;
     document.getElementById('bank-transfer-qr').style.display = 'block';
