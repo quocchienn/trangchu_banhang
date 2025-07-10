@@ -61,10 +61,9 @@ async function submitOrder(event) {
         formData.append('paymentProof', paymentProof);
 
         try {
-            const response = await fetch('https://server-banhang12.onrender.com/api/order', {
-    method: 'POST',
-    body: formData
-});
+            const response = await fetch('https://server-banhang12.onrender.com', {
+                method: 'POST',
+                body: formData
             });
             const result = await response.json();
             if (result.success) {
@@ -83,21 +82,13 @@ async function submitOrder(event) {
 
 function showBankQR(name) {
     const content = `MUA ${currentProduct} - ${name}`;
-
-    // Chuyển currentPrice từ '59.000₫' => 59000
-    let amount = currentPrice.replace(/[^\d]/g, '');
-
     document.getElementById('bank-transfer-content').innerText = content;
-
     const bank = 'MB';
     const account = '123456789';
-
-    const template = `https://img.vietqr.io/image/${bank}-${account}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=NGUYEN%20VAN%20A`;
-
+    const template = `https://img.vietqr.io/image/${bank}-${account}-compact2.png?amount=&addInfo=${encodeURIComponent(content)}&accountName=NGUYEN%20VAN%20A`;
     document.getElementById('bank-qr-img').src = template;
     document.getElementById('bank-transfer-qr').style.display = 'block';
 }
-
 
 // Smooth scrolling cho navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
