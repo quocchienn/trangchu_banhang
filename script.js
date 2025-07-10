@@ -61,9 +61,10 @@ async function submitOrder(event) {
         formData.append('paymentProof', paymentProof);
 
         try {
-            const response = await fetch('https://server-banhang12.onrender.com', {
-                method: 'POST',
-                body: formData
+            const response = await fetch('https://server-banhang12.onrender.com/api/order', {
+    method: 'POST',
+    body: formData
+});
             });
             const result = await response.json();
             if (result.success) {
