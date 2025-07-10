@@ -1,7 +1,6 @@
 let currentProduct = '';
 let currentPrice = '';
 let orderStep = 1; // 1: nhập thông tin, 2: xác nhận chuyển khoản
-let currentPromoProduct = '';
 
 function openModal(productName, price) {
     currentProduct = productName;
@@ -21,43 +20,6 @@ function openModal(productName, price) {
 function closeModal() {
     document.getElementById('orderModal').style.display = 'none';
     document.getElementById('bank-transfer-qr').style.display = 'none';
-}
-
-function openPromoModal(productName) {
-    currentPromoProduct = productName;
-    document.getElementById('promoModal').style.display = 'block';
-}
-
-function closePromoModal() {
-    document.getElementById('promoModal').style.display = 'none';
-    document.getElementById('promoCode').value = '';
-}
-
-async function submitPromo(event) {
-    event.preventDefault();
-    const promoCode = document.getElementById('promoCode').value;
-
-    if (!promoCode) {
-        alert('Vui lòng nhập mã khuyến mãi!');
-        return;
-    }
-
-    try {
-        const response = await fetch('https://server-banhang12.onrender.com/api/promo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ promoCode, product: currentPromoProduct })
-        });
-        const result = await response.json();
-        if (result.success) {
-            alert(`Mã khuyến mãi hợp lệ! ${result.message}`);
-            closePromoModal();
-        } else {
-            alert(result.message || 'Mã khuyến mãi không hợp lệ!');
-        }
-    } catch (err) {
-        alert('Không thể xác thực mã khuyến mãi. Vui lòng thử lại sau!');
-    }
 }
 
 async function submitOrder(event) {
@@ -85,6 +47,11 @@ async function submitOrder(event) {
             return;
         }
 
+        if (paymentProof.size > 10 * 1024 * 1024) {
+            alert('File ảnh quá lớn! Vui lòng chọn file dưới 10MB.');
+            return;
+        }
+
         const customerName = document.getElementById('customerName').value;
         const customerPhone = document.getElementById('customerPhone').value;
         const customerEmail = document.getElementById('customerEmail').value;
@@ -96,22 +63,47 @@ async function submitOrder(event) {
         formData.append('product', currentProduct);
         formData.append('paymentProof', paymentProof);
 
+        console.log('Sending FormData:', {
+            customerName,
+            customerPhone,
+            customerEmail,
+            product: currentProduct,
+            paymentProof: paymentProof.name
+        });
+
         try {
             const response = await fetch('https://server-banhang12.onrender.com/api/order', {
                 method: 'POST',
                 body: formData
             });
-            const result = await response.json();
+
+            // Log raw response text for debugging
+            const responseText = await response.text();
+            console.log('Raw server response:', responseText);
+
+            // Try parsing as JSON
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (jsonError) {
+                console.error('JSON parse error:', jsonError);
+                alert('Phản hồi server không hợp lệ. Vui lòng thử lại sau! Chi tiết: ' + responseText.substring(0, 100));
+                return;
+            }
+
+            console.log('Parsed server response:', result);
+
             if (result.success) {
                 document.getElementById('bank-transfer-qr').style.display = 'none';
                 document.getElementById('waiting-confirm').style.display = 'block';
                 document.getElementById('order-submit-btn').style.display = 'none';
                 orderStep = 3;
             } else {
-                alert(result.message || 'Có lỗi xảy ra, vui lòng thử lại!');
+                alert('Có lỗi xảy ra: ' + (result.message || 'Không nhận được phản hồi hợp lệ từ server'));
             }
         } catch (err) {
-            alert('Không thể gửi đơn hàng. Vui lòng thử lại sau!');
+            console.error('Fetch error:', err);
+            alert('Không thể gửi đơn hàng. Vui lòng thử lại sau! Chi tiết lỗi: ' + err.message);
         }
     }
 }
@@ -141,12 +133,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Đóng modal khi click bên ngoài
 window.onclick = function(event) {
-    const orderModal = document.getElementById('orderModal');
-    const promoModal = document.getElementById('promoModal');
-    if (event.target === orderModal) {
+    const modal = document.getElementById('orderModal');
+    if (event.target === modal) {
         closeModal();
-    } else if (event.target === promoModal) {
-        closePromoModal();
     }
 }
 
@@ -165,6 +154,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Observe all product cards and feature items
 document.querySelectorAll('.product-card, .feature-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';

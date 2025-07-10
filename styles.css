@@ -305,13 +305,8 @@ nav {
     font-weight: bold;
 }
 
-.button-group {
-    display: flex;
-    gap: 1rem;
-}
-
 .buy-button {
-    flex: 1;
+    width: 100%;
     background: linear-gradient(45deg, #4caf50, #45a049);
     color: white;
     padding: 1rem;
@@ -326,24 +321,6 @@ nav {
 .buy-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-}
-
-.promo-button {
-    flex: 1;
-    background: linear-gradient(45deg, #ff9800, #f57c00);
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.promo-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
 }
 
 .features {
@@ -471,6 +448,10 @@ footer {
     margin-top: 2rem;
 }
 
+.form-group {
+    margin-bottom: 1rem;
+}
+
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
@@ -528,9 +509,5 @@ footer {
     .combo-badge {
         right: -30px;
         padding: 5px 35px;
-    }
-    .button-group {
-        flex-direction: column;
-        gap: 0.5rem;
     }
 }
