@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Creative Store - Picsart & Lightroom Accounts</title>
+    <title>Tài Khoản Premium Chất Lượng Cao</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="floating-shapes"></div>
     <header>
         <nav class="container">
+            <a href="#" class="logo">Digital Creative Store</a>
             <ul class="nav-links">
+                <li><a href="#products">Sản Phẩm</a></li>
+                <li><a href="#features">Tại Sao Chọn Chúng Tôi</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
             </ul>
         </nav>
     </header>
-    <section id="home" class="hero">
+
+    <section class="hero">
         <div class="container">
             <h1>Tài Khoản Premium Chất Lượng Cao</h1>
             <p>Picsart & Lightroom - Công cụ chỉnh sửa ảnh chuyên nghiệp với giá cả phải chăng</p>
@@ -29,12 +32,10 @@
             <h2>Sản Phẩm Của Chúng Tôi</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <div class="product-icon">
-                        <img src="https://i.postimg.cc/Y9nrcjNq/Picsart-AI-Photo-Video-Editor.png" alt="Picsart Logo" class="icon-img">
-                    </div>
-                    <div class="product-title">Picsart Premium 1 Tháng</div>
-                    <div class="product-price">59.000₫</div>
-                    <div class="product-duration">1 tháng</div>
+                    <div class="product-icon"><img src="https://via.placeholder.com/80" alt="Picsart"></div>
+                    <h3 class="product-title">Picsart Premium 1 Tháng</h3>
+                    <p class="product-price">59.000₫</p>
+                    <p>1 tháng</p>
                     <ul class="product-features">
                         <li>Truy cập đầy đủ tất cả tính năng</li>
                         <li>Không có watermark</li>
@@ -42,18 +43,19 @@
                         <li>AI Background Remover</li>
                         <li>Bảo hành 15 ngày</li>
                     </ul>
-                    <button class="buy-button" onclick="openModal('Picsart Premium 1 Tháng', '59.000₫')">Mua ngay</button>
+                    <div class="button-group">
+                        <button class="buy-button" onclick="openModal('Picsart Premium 1 Tháng', '59.000₫')">Mua ngay</button>
+                        <button class="promo-button" onclick="openPromoModal('Picsart Premium 1 Tháng')">Nhập mã khuyến mãi</button>
+                    </div>
                 </div>
 
                 <div class="product-card popular">
                     <div class="popular-badge">PHỔ BIẾN</div>
-                    <div class="product-icon">
-                        <img src="https://i.postimg.cc/Y9nrcjNq/Picsart-AI-Photo-Video-Editor.png" alt="Picsart Logo" class="icon-img">
-                    </div>
-                    <div class="product-title">Picsart Premium 1 Năm</div>
-                    <div class="product-price">299.000₫</div>
-                    <div class="product-duration">12 tháng</div>
-                    <div class="save-badge">Tiết kiệm 409.000₫</div>
+                    <div class="product-icon"><img src="https://via.placeholder.com/80" alt="Picsart"></div>
+                    <h3 class="product-title">Picsart Premium 1 Năm</h3>
+                    <p class="product-price">299.000₫</p>
+                    <p>12 tháng</p>
+                    <p class="save-badge">Tiết kiệm 409.000₫</p>
                     <ul class="product-features">
                         <li>Truy cập đầy đủ tất cả tính năng</li>
                         <li>Không có watermark</li>
@@ -62,54 +64,60 @@
                         <li>Hỗ trợ ưu tiên</li>
                         <li>Bảo hành 60 ngày</li>
                     </ul>
-                    <button class="buy-button" onclick="openModal('Picsart Premium 1 Năm', '299.000₫')">Mua ngay</button>
+                    <div class="button-group">
+                        <button class="buy-button" onclick="openModal('Picsart Premium 1 Năm', '299.000₫')">Mua ngay</button>
+                        <button class="promo-button" onclick="openPromoModal('Picsart Premium 1 Năm')">Nhập mã khuyến mãi</button>
+                    </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-icon">
-                        <img src="https://i.postimg.cc/1t5mYDqj/Lightroom-Photo-Video-Editor.png" alt="Lightroom Logo" class="icon-img">
-                    </div>
-                    <div class="product-title">Lightroom Mobile</div>
-                    <div class="product-price">Miễn phí</div>
-                    <div class="product-duration">Không rõ</div>
+                    <div class="product-icon"><img src="https://via.placeholder.com/80" alt="Lightroom"></div>
+                    <h3 class="product-title">Lightroom Mobile</h3>
+                    <p class="product-price">Miễn phí</p>
+                    <p>Không rõ</p>
                     <ul class="product-features">
                         <li>Chỉnh sửa chuyên nghiệp trên mobile</li>
                         <li>Bảo hành không</li>
                     </ul>
-                    <button class="buy-button" onclick="openModal('Lightroom Mobile', 'Miễn Phí')">Mua ngay</button>
+                    <div class="button-group">
+                        <button class="buy-button" onclick="openModal('Lightroom Mobile', 'Miễn phí')">Mua ngay</button>
+                        <button class="promo-button" onclick="openPromoModal('Lightroom Mobile')">Nhập mã khuyến mãi</button>
+                    </div>
                 </div>
 
                 <div class="product-card combo">
                     <div class="combo-badge">COMBO HOT</div>
-                    <div class="product-icon">
-                        <img src="https://i.postimg.cc/jdrqJWxm/E314-C1-ED-6315-44-B5-8-C6-F-16-BDEECDDABC.jpg" alt="Combo Logo" class="icon-img">
-                    </div>
-                    <div class="product-title">Combo Ultimate</div>
-                    <div class="product-price">399.000₫</div>
-                    <div class="product-duration">12 tháng</div>
-                    <div class="save-badge">Tiết kiệm 49.000₫</div>
+                    <div class="product-icon"><img src="https://via.placeholder.com/80" alt="Combo"></div>
+                    <h3 class="product-title">Combo Ultimate</h3>
+                    <p class="product-price">399.000₫</p>
+                    <p>12 tháng</p>
+                    <p class="save-badge">Tiết kiệm 49.000₫</p>
                     <ul class="product-features">
                         <li>Picsart Premium + Lightroom Mobile</li>
                         <li>Hỗ trợ VIP 24/7</li>
                         <li>Bảo hành 90 ngày</li>
                     </ul>
-                    <button class="buy-button" onclick="openModal('Combo Ultimate', '399.000₫')">Mua ngay</button>
+                    <div class="button-group">
+                        <button class="buy-button" onclick="openModal('Combo Ultimate', '399.000₫')">Mua ngay</button>
+                        <button class="promo-button" onclick="openPromoModal('Combo Ultimate')">Nhập mã khuyến mãi</button>
+                    </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-icon">
-                        <img src="https://i.postimg.cc/jdrqJWxm/E314-C1-ED-6315-44-B5-8-C6-F-16-BDEECDDABC.jpg" alt="Combo Logo" class="icon-img">
-                    </div>
-                    <div class="product-title">Combo Basic</div>
-                    <div class="product-price">69.000₫</div>
-                    <div class="product-duration">1 tháng</div>
+                    <div class="product-icon"><img src="https://via.placeholder.com/80" alt="Combo"></div>
+                    <h3 class="product-title">Combo Basic</h3>
+                    <p class="product-price">69.000₫</p>
+                    <p>1 tháng</p>
+                    <p class="save-badge">Tiết kiệm 69.000₫</p>
                     <ul class="product-features">
                         <li>Picsart 1 tháng + Lightroom Mobile</li>
-                        <li>Tiết kiệm 69.000₫</li>
                         <li>Hỗ trợ online 24/7</li>
                         <li>Bảo hành 30 ngày</li>
                     </ul>
-                    <button class="buy-button" onclick="openModal('Combo Basic', '69.000₫')">Mua ngay</button>
+                    <div class="button-group">
+                        <button class="buy-button" onclick="openModal('Combo Basic', '69.000₫')">Mua ngay</button>
+                        <button class="promo-button" onclick="openPromoModal('Combo Basic')">Nhập mã khuyến mãi</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,27 +156,27 @@
             <h2>Liên Hệ Với Chúng Tôi</h2>
             <p>Có thắc mắc? Chúng tôi luôn sẵn sàng hỗ trợ bạn!</p>
             <div class="contact-info">
-                <a href="tel:0385531007" class="contact-item">
+                <div class="contact-item">
                     <div class="contact-icon">📞</div>
                     <div>
-                        <h4>Hotline</h4>
+                        <h3>Hotline</h3>
                         <p>0385531007</p>
                     </div>
-                </a>
-                <a href="mailto:lequocchien2709@icloud.com" class="contact-item">
+                </div>
+                <div class="contact-item">
                     <div class="contact-icon">✉️</div>
                     <div>
-                        <h4>Email</h4>
+                        <h3>Email</h3>
                         <p>lequocchien2709@icloud.com</p>
                     </div>
-                </a>
-                <a href="http://zalo.me/84385531007" class="contact-item" target="_blank">
+                </div>
+                <div class="contact-item">
                     <div class="contact-icon">💬</div>
                     <div>
-                        <h4>Zalo</h4>
+                        <h3>Zalo</h3>
                         <p>0385531007</p>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -182,45 +190,55 @@
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
-            <h2>Đặt Hàng</h2>
             <div id="modalProduct"></div>
-            <form class="order-form" onsubmit="submitOrder(event)">
+            <form id="orderForm" class="order-form" onsubmit="submitOrder(event)">
                 <div id="order-info-fields">
                     <div class="form-group">
                         <label for="customerName">Họ và tên:</label>
-                        <input type="text" id="customerName" name="customerName" required>
+                        <input type="text" id="customerName" required>
                     </div>
                     <div class="form-group">
                         <label for="customerPhone">Số điện thoại:</label>
-                        <input type="tel" id="customerPhone" name="customerPhone" required>
+                        <input type="tel" id="customerPhone" required>
                     </div>
                     <div class="form-group">
                         <label for="customerEmail">Email:</label>
-                        <input type="email" id="customerEmail" name="customerEmail" required>
+                        <input type="email" id="customerEmail" required>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn" id="order-submit-btn">Đặt hàng ngay</button>
-            </form>
-            <div id="bank-transfer-qr" style="display:none; text-align:center; margin: 20px 0;">
-                <h3>Chuyển khoản qua ngân hàng</h3>
-                <p><b>Ngân hàng:</b> MB Bank</p>
-                <p><b>Số tài khoản:</b> 701235</p>
-                <p><b>Chủ tài khoản:</b> LE QUOC CHIEN</p>
-                <p><b>Nội dung chuyển khoản:</b> <span id="bank-transfer-content"></span></p>
-                <img id="bank-qr-img" src="" alt="QR chuyển khoản" style="width:200px; margin:10px 0;">
-                <p>Quét mã QR để chuyển khoản nhanh</p>
-                <div style="margin-top:20px;">
-                    <label for="paymentProof"><b>Upload ảnh chuyển khoản:</b></label>
-                    <input type="file" id="paymentProof" name="paymentProof" accept="image/*">
+                <div id="bank-transfer-qr" style="display: none;">
+                    <h3>Chuyển khoản qua ngân hàng</h3>
+                    <p><strong>Ngân hàng:</strong> MB Bank</p>
+                    <p><strong>Số tài khoản:</strong> 123456789</p>
+                    <p><strong>Chủ tài khoản:</strong> NGUYEN VAN A</p>
+                    <p><strong>Nội dung chuyển khoản:</strong> <span id="bank-transfer-content"></span></p>
+                    <p>Quét mã QR để chuyển khoản nhanh:</p>
+                    <img id="bank-qr-img" src="" alt="QR Code">
+                    <div class="form-group">
+                        <label for="paymentProof">Upload ảnh chuyển khoản:</label>
+                        <input type="file" id="paymentProof" accept="image/*" required>
+                    </div>
                 </div>
-            </div>
-            <div id="waiting-confirm" style="display:none; text-align:center; margin: 20px 0; color: green; font-weight: bold;">
-                Vui lòng chờ xác thực đơn hàng. Chúng tôi sẽ liên hệ với bạn sớm nhất!
-            </div>
+                <p id="waiting-confirm" style="display: none;">Vui lòng chờ xác thực đơn hàng. Chúng tôi sẽ liên hệ với bạn sớm nhất!</p>
+                <button type="submit" id="order-submit-btn" class="submit-btn">Đặt hàng ngay</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePromoModal()">×</span>
+            <h3>Nhập mã khuyến mãi</h3>
+            <form id="promoForm" class="order-form" onsubmit="submitPromo(event)">
+                <div class="form-group">
+                    <label for="promoCode">Mã khuyến mãi:</label>
+                    <input type="text" id="promoCode" required>
+                </div>
+                <button type="submit" class="submit-btn">Áp dụng</button>
+            </form>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>
