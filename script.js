@@ -19,14 +19,13 @@ function openModal(productName, price) {
 
 function closeModal() {
     document.getElementById('orderModal').style.display = 'none';
-    document.getElementById('bank-transfer-qr').style.display = 'none'; // Ẩn QR khi đóng modal
+    document.getElementById('bank-transfer-qr').style.display = 'none';
 }
 
 async function submitOrder(event) {
     event.preventDefault();
 
     if (orderStep === 1) {
-        // Lấy thông tin khách hàng
         const customerName = document.getElementById('customerName').value;
         const customerPhone = document.getElementById('customerPhone').value;
         const customerEmail = document.getElementById('customerEmail').value;
@@ -53,7 +52,6 @@ async function submitOrder(event) {
             return;
         }
 
-        // Lấy lại thông tin khách hàng đã nhập
         const customerName = document.getElementById('customerName').value;
         const customerPhone = document.getElementById('customerPhone').value;
         const customerEmail = document.getElementById('customerEmail').value;
@@ -78,8 +76,22 @@ async function submitOrder(event) {
                 method: 'POST',
                 body: formData
             });
-            const result = await response.json();
-            console.log('Server response:', result);
+
+            // Log raw response text for debugging
+            const responseText = await response.text();
+            console.log('Raw server response:', responseText);
+
+            // Try parsing as JSON
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (jsonError) {
+                console.error('JSON parse error:', jsonError);
+                alert('Phản hồi server không hợp lệ. Vui lòng thử lại sau! Chi tiết: ' + responseText.substring(0, 100));
+                return;
+            }
+
+            console.log('Parsed server response:', result);
 
             if (result.success) {
                 document.getElementById('bank-transfer-qr').style.display = 'none';
@@ -87,7 +99,7 @@ async function submitOrder(event) {
                 document.getElementById('order-submit-btn').style.display = 'none';
                 orderStep = 3;
             } else {
-                alert('Có lỗi xảy ra: ' + (result.message || 'Không nhận được phản hồi từ server'));
+                alert('Có lỗi xảy ra: ' + (result.message || 'Không nhận được phản hồi hợp lệ từ server'));
             }
         } catch (err) {
             console.error('Fetch error:', err);
@@ -100,7 +112,7 @@ function showBankQR(name) {
     const content = `MUA ${currentProduct} - ${name}`;
     document.getElementById('bank-transfer-content').innerText = content;
     const bank = 'MB';
-    const account = '701235';
+    const account = '123456789';
     const template = `https://img.vietqr.io/image/${bank}-${account}-compact2.png?amount=&addInfo=${encodeURIComponent(content)}&accountName=NGUYEN%20VAN%20A`;
     document.getElementById('bank-qr-img').src = template;
     document.getElementById('bank-transfer-qr').style.display = 'block';
